@@ -7,7 +7,9 @@
         public static function set($route, $function) {
             self::$validRoutes[] = $route;
             
-            if ($_GET['url'] == $route) {
+            if (!isset($_GET['url'])) {
+                Home::CreateView('home');
+            } else if ($_GET['url'] == $route) {
                 $function->__invoke();
             }
         }
